@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<f:view xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html"
+        xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:p="http://primefaces.org/ui" >
+    <html>
+        <h:head>
+            <h:outputStylesheet library="css/" name="styleStockMarket.css"/>
+            <ui:include src="template/bodyAplication.xhtml"/>
+        </h:head>
+        <h:body>
+            <h:form id="formCatalogos">
+                <p:dialog header="Agregar Roles" 
+                          widgetVar="agregarRolDlg" 
+                          modal="true" 
+                          draggable="true" 
+                          resizable="false"
+                          width="50%"
+                          position="top">
+                    <div class="ui-g-12 ui-md-12">
+                        <p:panel id="idPanelAddRoles" header="Rol Nuevo">
+
+                            <h:panelGrid id="grid" columns="3" cellpadding="5">
+                                <p:outputLabel for="idDescRol" value="Nuevo Rol : " />
+                                <p:inputText id="idDescRol" 
+                                             value="#{catalogosMB.nuevoRol.descripcion}"
+                                             required="true" 
+                                             requiredMessage="#{msj['msg.error.campo.requerido']}"
+                                             style="text-transform:uppercase;">
+                                    <p:keyFilter regEx="/[A-Z]/i"/>                                        
+                                </p:inputText>
+                                <p:message for="idDescRol" />
+                                <p:commandButton id="idBtnAddRol"
+                                                 action="#{catalogosMB.agregarRol}"
+                                                 value="Agregar Rol" 
+                                                 update=":formCatalogos:idPanelAddRoles"/>
+                            </h:panelGrid> 
+
+
+                            <p:dataTable id="idTblRoles" 
+                                         widgetVar="tblRoles" 
+                                         var="rol" value="#{catalogosMB.lstRoles}" 
+                                         editable="true" 
+                                         style="margin-bottom:20px"
+                                         emptyMessage="#{msj['label.lista.vacia']}">
+                                <f:facet name="header">
+                                    #{msj['titulo.table.roles']}
+                                </f:facet>
+
+                                <p:ajax event="rowEdit" listener="#{catalogosMB.onRolRowEdit}" update=":formCatalogos:msgs" />
+                                <p:ajax event="rowEditCancel" listener="#{catalogosMB.onRolRowCancel}" update=":formCatalogos:msgs" />
+
+                                <p:column headerText="Id">
+                                    <p:outputLabel value="#{rol.rolId}" />
+                                </p:column>
+
+                                <p:column headerText="Descripción">
+                                    <p:cellEditor>
+                                        <f:facet name="output"><h:outputText value="#{rol.descripcion}" /></f:facet>
+                                        <f:facet name="input">
+                                            <p:inputText value="#{rol.descripcion}" style="width:100%; text-transform:uppercase;" label="Descripción">
+                                                <p:keyFilter regEx="/[A-Z]/i"/>
+                                            </p:inputText></f:facet>
+                                    </p:cellEditor>
+                                </p:column>
+
+                                <p:column style="width:32px">
+                                    <p:rowEditor />
+                                </p:column>
+                            </p:dataTable>
+
+
+                        </p:panel>  
+                    </div>
+                </p:dialog>
+
+                <div class="ui-g-12 ui-md-12">
+                    <ui:include src="template/bodyAplication.xhtml"/>
+                    <ui:include src="template/menuHeader.xhtml"/>
+                    <ui:include src="template/statusLoad.xhtml"/>
+                    <!--                    <p:poll interval="25"/>-->
+                    <p:growl id="msgs" showDetail="true" autoUpdate="true" life="20000"/>
+                    <f:event listener="#{catalogosMB.preRender}" type="preRenderView" />
+
+
+
+
+
+                    <div class="ui-g-12 ui-md-12">
+                        <p:panel id="idPanelCatalogos" header="Administración Catalogos">
+                            <p:commandButton value="Roles" 
+                                             actionListener="#{catalogosMB.cargarRoles}" 
+                                             onsuccess="PF('agregarRolDlg').show();" 
+                                             ajax="true" 
+                                             async="true" 
+                                             immediate="true"
+                                             update=":formCatalogos:idTblRoles"/>
+                        </p:panel>
+                    </div>
+                </div>
+            </h:form>
+        </h:body>
+    </html>
+</f:view>
