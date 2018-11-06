@@ -12,6 +12,8 @@ package com.xtaticzero.systems.dao.sql;
 public interface BaseSQL {
 
     String FECHA_TERMINO = "{FECHA_TERMINO}";
+    
+    String EXPRESION = "{EXPRESION}";
 
     String AND = " AND \n";
 

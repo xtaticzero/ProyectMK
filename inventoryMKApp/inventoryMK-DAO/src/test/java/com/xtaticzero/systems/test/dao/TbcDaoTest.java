@@ -5,10 +5,13 @@
  */
 package com.xtaticzero.systems.test.dao;
 
+import com.xtaticzero.systems.base.dto.RolDTO;
 import com.xtaticzero.systems.base.dto.UsuarioDTO;
 import com.xtaticzero.systems.dao.PruebaDao;
+import com.xtaticzero.systems.dao.RolDAO;
 import com.xtaticzero.systems.dao.UserDao;
 import com.xtaticzero.systems.test.base.BaseTest;
+import java.util.List;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -23,10 +26,13 @@ public class TbcDaoTest extends BaseTest {
     @Autowired
     @Qualifier("pruebaDao")
     private PruebaDao pruebaDao;
-    
+
     @Autowired
     @Qualifier("userDao")
     private UserDao userDao;
+    @Autowired
+    @Qualifier("rolDAO")
+    private RolDAO rolDAO;
 
     @Test
     //@Ignore
@@ -45,13 +51,13 @@ public class TbcDaoTest extends BaseTest {
             System.err.println(ex);
         }
     }
-    
+
     @Test
     @Transactional(readOnly = false, rollbackFor = Exception.class)
     public void pruebaDao() {
         System.out.println("todo ok");
         try {
-            if (userDao != null) {
+            if (userDao != null && rolDAO != null) {
                 UsuarioDTO usuario = new UsuarioDTO();
                 UsuarioDTO usuarioV;
                 usuario.setDisplay_name("admin");
@@ -59,8 +65,22 @@ public class TbcDaoTest extends BaseTest {
                 System.out.println("todo ok");
                 usuarioV = userDao.passwordValido(usuario);
                 
-                if(usuarioV!=null){
-                    System.out.println("El usuario es valido"+usuarioV);
+                List<RolDTO> lstRoles = rolDAO.findAll();
+                List<RolDTO> lstRolesDes = rolDAO.findByDescripcion("OPERADOR");
+                
+                if(lstRoles!=null){
+                    for (RolDTO role : lstRoles) {
+                        logger.debug("Descripcion: "+role.getDescripcion());
+                    }
+                }
+                if(lstRolesDes!=null){
+                    for (RolDTO role : lstRolesDes) {
+                        logger.debug("Descripcion: "+role.getDescripcion());
+                    }
+                }
+
+                if (usuarioV != null) {
+                    System.out.println("El usuario es valido" + usuarioV);
                 }
             } else {
                 System.err.println("Valio ");

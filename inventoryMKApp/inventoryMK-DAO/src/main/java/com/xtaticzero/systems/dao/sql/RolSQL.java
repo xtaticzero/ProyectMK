@@ -32,7 +32,7 @@ public interface RolSQL extends BaseSQL {
 
     String ROL_FIND_ALL = ROL_HEDER.concat(WHERE);
 
-    String LIKE_DESCRIPCION = "ROL.descripcion LIKE '%?%'";
+    String LIKE_DESCRIPCION = "ROL.descripcion LIKE '%{EXPRESION}%'";
 
     String ROL_FIND_DESCRIPCION = ROL_HEDER.concat(WHERE).concat(AND).concat(LIKE_DESCRIPCION);
     

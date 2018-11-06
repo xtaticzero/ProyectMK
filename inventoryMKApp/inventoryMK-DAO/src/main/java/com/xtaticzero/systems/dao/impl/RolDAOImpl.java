@@ -37,6 +37,18 @@ public class RolDAOImpl extends BaseJDBCDao<RolDTO> implements RolDAO, RolSQL {
         KeyHolder keyHolder = new GeneratedKeyHolder();
 
         try {
+            
+            List<RolDTO> resultLst = findByDescripcion(newRol.getDescripcion());
+
+            if (resultLst != null && !resultLst.isEmpty()) {
+                for (RolDTO rolDTO : resultLst) {
+                    if (rolDTO.getDescripcion().equalsIgnoreCase(newRol.getDescripcion())) {
+                        logger.error("El rol esta duplicado");
+                        throw new DAOException(ERR_GENERAL, "El rol esta duplicado");
+                    }
+                }
+            }
+            
             PreparedStatementCreator statement
                     = new RolPreparedStatement(newRol);
             getJdbcTemplateBase().update(statement, keyHolder);
@@ -88,7 +100,7 @@ public class RolDAOImpl extends BaseJDBCDao<RolDTO> implements RolDAO, RolSQL {
     @Override
     public List<RolDTO> findAll() throws DAOException {
         try {
-            return getJdbcTemplateBase().query(ROL_INACTIVATE, new RolMapper());
+            return getJdbcTemplateBase().query(ROL_FIND_ALL, new RolMapper());
         } catch (Exception ex) {
             logger.error(ex.getMessage(), ex);
             throw new DAOException(ERR_GENERAL, ex.getMessage(), ex);
@@ -98,7 +110,11 @@ public class RolDAOImpl extends BaseJDBCDao<RolDTO> implements RolDAO, RolSQL {
     @Override
     public List<RolDTO> findByDescripcion(String descripcion) throws DAOException {
         try {
-            return getJdbcTemplateBase().query(ROL_FIND_DESCRIPCION, new RolMapper());
+            List<Object> params = new ArrayList<>();
+
+            params.add(descripcion);
+                        
+            return getJdbcTemplateBase().query(ROL_FIND_DESCRIPCION.replace(EXPRESION, descripcion),new RolMapper());
         } catch (Exception ex) {
             logger.error(ex.getMessage(), ex);
             throw new DAOException(ERR_GENERAL, ex.getMessage(), ex);

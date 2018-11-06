@@ -32,6 +32,9 @@ public class RolServiceImpl extends BaseBusinessServices implements RolService {
     @Override
     public RolDTO insert(RolDTO newRol) throws BusinessException {
         try {
+            if (newRol != null && newRol.getDescripcion() != null) {
+                newRol.setDescripcion(newRol.getDescripcion().toUpperCase());
+            }
             return rolDAO.insert(newRol);
         } catch (DAOException daoEx) {
             logger.error(daoEx.getMessage(), daoEx);
@@ -42,6 +45,9 @@ public class RolServiceImpl extends BaseBusinessServices implements RolService {
     @Override
     public Integer update(RolDTO rol) throws BusinessException {
         try {
+            if (rol != null && rol.getDescripcion() != null) {
+                rol.setDescripcion(rol.getDescripcion().toUpperCase());
+            }
             return rolDAO.update(rol);
         } catch (DAOException daoEx) {
             logger.error(daoEx.getMessage(), daoEx);
@@ -54,8 +60,8 @@ public class RolServiceImpl extends BaseBusinessServices implements RolService {
         try {
             return rolDAO.delete(newRol);
         } catch (DAOException daoEx) {
-            logger.error(daoEx.getMessage(),daoEx);
-            throw new BusinessException(ERR_GENERAL_DESCRIPCION,daoEx.getMessage(),daoEx);
+            logger.error(daoEx.getMessage(), daoEx);
+            throw new BusinessException(ERR_GENERAL_DESCRIPCION, daoEx.getMessage(), daoEx);
         }
     }
 
@@ -64,8 +70,8 @@ public class RolServiceImpl extends BaseBusinessServices implements RolService {
         try {
             return rolDAO.findAll();
         } catch (DAOException daoEx) {
-            logger.error(daoEx.getMessage(),daoEx);
-            throw new BusinessException(ERR_GENERAL_DESCRIPCION,daoEx.getMessage(),daoEx);
+            logger.error(daoEx.getMessage(), daoEx);
+            throw new BusinessException(ERR_GENERAL_DESCRIPCION, daoEx.getMessage(), daoEx);
         }
     }
 
@@ -74,8 +80,8 @@ public class RolServiceImpl extends BaseBusinessServices implements RolService {
         try {
             return rolDAO.findByDescripcion(descripcion);
         } catch (DAOException daoEx) {
-            logger.error(daoEx.getMessage(),daoEx);
-            throw new BusinessException(ERR_GENERAL_DESCRIPCION,daoEx.getMessage(),daoEx);
+            logger.error(daoEx.getMessage(), daoEx);
+            throw new BusinessException(ERR_GENERAL_DESCRIPCION, daoEx.getMessage(), daoEx);
         }
     }
 
@@ -84,8 +90,8 @@ public class RolServiceImpl extends BaseBusinessServices implements RolService {
         try {
             return rolDAO.findById(rol);
         } catch (DAOException daoEx) {
-            logger.error(daoEx.getMessage(),daoEx);
-            throw new BusinessException(ERR_GENERAL_DESCRIPCION,daoEx.getMessage(),daoEx);
+            logger.error(daoEx.getMessage(), daoEx);
+            throw new BusinessException(ERR_GENERAL_DESCRIPCION, daoEx.getMessage(), daoEx);
         }
     }
 

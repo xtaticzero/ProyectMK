@@ -16,7 +16,8 @@ public interface RowsNames {
     String USER_EMAIL = "USR.email";
     String USER_FECHA_ENTRADA = "USR.fecha_entrada";
     String USER_FECHA_TERMINO = "USR.fecha_termino";
-    String ROL_ID = "USR.rol_id";
+    String USR_ROL_ID = "USR.rol_id";
+    String ROL_ID = "ROL.rol_id";
     String ROL_DESCRIPCION = "ROL.descripcion";
     String ROL_FECHA_ENTRADA = "ROL.fecha_entrada";
     String ROL_FECHA_FIN = "ROL.fecha_termino";
