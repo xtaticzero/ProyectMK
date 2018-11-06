@@ -3,17 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.xtaticzero.systems.dao.sql;
+package stock.vista.mk.managedbean;
+
+import stock.vista.VistaAbstractMB;
 
 /**
  *
  * @author Ing. Emmanuel Estrada Gonzalez <emmanuel.estradag.ipn@gmail.com>
  */
-public interface BaseSQL {
-
-    String FECHA_TERMINO = "{FECHA_TERMINO}";
-
-    String AND = " AND \n";
-
-    String WHERE = " WHERE 1=1 \n";
+public abstract class CatalogosMBAbstract extends VistaAbstractMB{
+    
+    private static final long serialVersionUID = -6086687798755903319L;
+    
 }

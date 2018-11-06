@@ -23,8 +23,7 @@ import javax.servlet.http.HttpSession;
 import org.apache.log4j.Logger;
 import stock.vista.constans.CatalogoErroresEnum;
 import stock.vista.vector.enums.MIMETypesEnum;
-import uk.co.jemos.podam.api.PodamFactory;
-import uk.co.jemos.podam.api.PodamFactoryImpl;
+
 
 /**
  *
@@ -36,11 +35,7 @@ public abstract class VistaAbstractMB implements Serializable {
 
     protected final Logger logger;
     private UsuarioDTO usuario;
-    /**
-     * The constant factory.
-     */
-    private final PodamFactory factory = new PodamFactoryImpl();
-
+    
     public VistaAbstractMB() {
         logger = Logger.getLogger(getClass());
     }
@@ -218,9 +213,7 @@ public abstract class VistaAbstractMB implements Serializable {
         return text;
     }
 
-    public PodamFactory getFactory() {
-        return factory;
-    }
+    
 
     public UsuarioDTO getUsuario() {
         return usuario;

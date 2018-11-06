@@ -8,13 +8,13 @@ package com.xtaticzero.systems.test.impl;
 import com.xtaticzero.systems.base.constants.excepcion.impl.BusinessException;
 import com.xtaticzero.systems.base.dto.UsuarioDTO;
 import com.xtaticzero.systems.base.enums.ReportsEnum;
-import com.xtaticzero.systems.business.logging.UserLogginService;
 import com.xtaticzero.systems.business.util.ReporterService;
 import com.xtaticzero.systems.dao.PruebaDao;
 import com.xtaticzero.systems.test.base.BaseTest;
 import java.io.File;
 import java.io.FileOutputStream;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -57,6 +57,7 @@ public class ReporteTest extends BaseTest {
     }
 
     @Test
+    @Ignore
     public void pruebaReportePDF() throws Exception {
         try {
             if (userService != null && reporterService != null) {

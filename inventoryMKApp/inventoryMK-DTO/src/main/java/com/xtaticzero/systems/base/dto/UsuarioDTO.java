@@ -19,7 +19,7 @@ public class UsuarioDTO extends BaseModel {
 
     private BigInteger user_id;
     private BigInteger rol_id;
-    private String rol;
+    private RolDTO rol;
     private String email;
     private String display_name;
     private String password;
@@ -62,11 +62,11 @@ public class UsuarioDTO extends BaseModel {
         this.rol_id = rol_id;
     }
 
-    public String getRol() {
+    public RolDTO getRol() {
         return rol;
     }
 
-    public void setRol(String rol) {
+    public void setRol(RolDTO rol) {
         this.rol = rol;
     }
 

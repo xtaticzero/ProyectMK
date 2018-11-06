@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<f:view xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html"
+        xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:p="http://primefaces.org/ui" >
+    <html>
+        <h:head>
+            <h:outputStylesheet library="css/" name="styleStockMarket.css"/>
+            <ui:include src="template/bodyAplication.xhtml"/>
+        </h:head>
+        <h:body>
+            <h:form>
+                <div class="ui-g-12 ui-md-12">
+                    <ui:include src="template/bodyAplication.xhtml"/>
+                    <ui:include src="template/menuHeader.xhtml"/>
+                    <ui:include src="template/statusLoad.xhtml"/>
+                    <p:poll interval="15"/>
+                    <p:growl id="msgs" showDetail="true" autoUpdate="true"/>
+                    <f:event listener="#{catalogosMB.preRender}" type="preRenderView" />
+                    <div class="ui-g-12 ui-md-12">
+                        <p:panel id="idPanelCatalogos" header="Administración Catalogos">
+                            <h:panelGrid id="grid" columns="3" cellpadding="5">
+                                <p:outputLabel for="default" value="Default:" />
+                                <p:inputText id="default" required="true" />
+                                <p:message for="default" />
+
+                                <p:outputLabel for="txt" value="Text:" />
+                                <p:inputText id="txt" required="true" />
+                                <p:message for="txt" display="text" />
+
+                                <p:outputLabel for="icon" value="Icon:" />
+                                <p:inputText id="icon" required="true" />
+                                <p:message for="icon" display="icon" />
+
+                                <p:outputLabel for="tt" value="Tooltip:" />
+                                <p:inputText id="tt" required="true" />
+                                <p:message for="tt" display="tooltip" />
+                            </h:panelGrid>
+                            
+                            <p:commandButton id="submitButton" value="Submit" update="grid" />
+                        </p:panel>
+                    </div>
+                </div>
+            </h:form>
+        </h:body>
+    </html>
+</f:view>

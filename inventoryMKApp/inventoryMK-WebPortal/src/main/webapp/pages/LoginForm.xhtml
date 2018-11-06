@@ -16,8 +16,16 @@
                     }
                 }
             </script>
+            <style type="text/css">
+                boton {
+                    border-radius: 5px;
+
+                }
+            </style>
+            <ui:include src="inventoryMK/template/body.xhtml"/>
         </h:head>
         <h:body>
+            <h:outputStylesheet library="css/" name="styleInventoryMK.css"/> 
             <!-- HEADER -->
             <div id="header">
                 <div class="tail-top-right"></div>
@@ -25,8 +33,7 @@
                     <div class="tail-bottom">
                         <div class="header">
                             <div class="row-1">
-                                <ul>
-                                    
+                                <ul>                                    
                                 </ul>
                             </div>
                         </div>
@@ -42,9 +49,8 @@
                     <h:form>
                         <p:growl id="growl" sticky="true" showDetail="true" life="3000" />
                         <h:outputLink value="javascript:void(0)" onclick="PF('dlg').show();" title="login">
-                            <h:panelGrid style="left: 40%; top: 150px; position: relative;">
-                                <p:graphicImage  value="/resources/images/user-login.png" height="200" width="200" />
-                                <h:outputText value="Login" style="font-weight:bold;text-decoration: #222222"/>
+                            <h:panelGrid style="left: 15%; top: 60px; position: relative;">
+                                <p:graphicImage  value="/resources/images/mary-kay-company_login.png" height="270" width="300" />
                             </h:panelGrid>
                         </h:outputLink>
                         <p:dialog header="Login" widgetVar="dlg" resizable="false">
@@ -63,8 +69,7 @@
                         </p:dialog>
                     </h:form>
                 </div>
-            </div>
-            <ui:include src="body.xhtml"/>           
+            </div>     
         </h:body>
     </html>
 </f:view>
