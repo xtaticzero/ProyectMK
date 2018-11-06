@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<f:view xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html"
+        xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:p="http://primefaces.org/ui" >
+    <html>
+        <h:head>
+        </h:head>
+        <h:body>
+            <h:form id="formError" enctype="multipart/form-data" styleClass="panel-principal">
+                <p:growl showDetail="true" id="msgGrw" globalOnly="true"/>
+                <p:messages showDetail="true" id="msg" globalOnly="true"/>
+                <div align="center">
+                    <p:panelGrid columns="1">
+                        <img src="../../resources/images/warning.jpg" align="middle" alt=""/>
+                        <div class="ui-messages-error ui-corner-all">
+                            <ul>
+                                <li>
+                                    <span class="ui-messages-warn-icon" />
+                                    <span class="ui-messages-error-summary">#{enConstruccionErrorMB.error}</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </p:panelGrid>
+                </div>
+            </h:form>
+        </h:body>
+    </html>
+</f:view>
