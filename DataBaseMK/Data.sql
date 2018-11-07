@@ -121,4 +121,19 @@ PER.fecha_entrada,
 PER.fecha_termino
 FROM PERSONA PER WHERE 1=1 
  ORDER BY 
-PER.nombre
+PER.nombre;
+
+SELECT 
+COM.comision_id,
+COM.descripcion,
+COM.porcentaje,
+COM.fecha_entrada,
+COM.fecha_termino
+FROM CAT_COMISIONES COM;
+
+INSERT INTO CAT_COMISIONES(descripcion,porcentaje)
+VALUES('MK',34.5);
+
+UPDATE CAT_COMISIONES 
+SET COM.fecha_termino = SYSDATE()
+WHERE COM.comision_id = ?;
