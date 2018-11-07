@@ -26,6 +26,7 @@ CREATE TABLE STOCK_MARY_KAY_BBDD.PERSONA (
     fecha_nacimiento DATETIME,
     fecha_entrada DATETIME DEFAULT NOW(),
     fecha_termino DATETIME,
+    UNIQUE INDEX (correo_electronico),
     PRIMARY KEY (persona_id)
 ) ENGINE=INNODB;
 

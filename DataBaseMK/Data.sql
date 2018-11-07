@@ -49,3 +49,76 @@ ROL.descripcion LIKE 'OPERADOR%';
 
 SELECT * from users;
 
+SELECT 
+USR.user_id,
+USR.persona_id,
+USR.rol_id,
+USR.display_name,
+USR.fecha_entrada,
+USR.fecha_termino,
+PER.persona_id,
+PER.nombre,
+PER.apellido_paterno,
+PER.apellido_materno,
+PER.correo_electronico,
+PER.direccion,
+PER.celular,
+PER.fecha_nacimiento,
+PER.fecha_entrada,
+PER.fecha_termino,
+ROL.rol_id,
+ROL.descripcion,
+ROL.fecha_entrada,
+ROL.fecha_termino
+FROM USERS USR
+INNER JOIN CAT_ROL ROL ON USR.rol_id = ROL.rol_id
+INNER JOIN PERSONA PER ON PER.persona_id = USR.persona_id
+WHERE 
+USR.password = MD5('admin123')
+AND 
+USR.display_name = 'admin'
+AND USR.fecha_termino IS NULL;
+
+
+UPDATE USERS USR SET 
+USR.persona_id = ?,
+USR.rol_id = ?,
+USR.display_name = ?,
+USR.password = MD5(?)
+WHERE USR.user_id = ?
+
+INSERT INTO 
+PERSONA(nombre,apellido_paterno,apellido_materno,correo_electronico,direccion,celular,fecha_nacimiento)
+VALUES (?,?,?,?,?,?,?);
+
+UPDATE PERSONA 
+SET fecha_termino=SYSDATE()
+WHERE persona_id=?;
+
+SELECT PER.persona_id,
+PER.nombre,
+PER.apellido_paterno,
+PER.apellido_materno,
+PER.correo_electronico,
+PER.direccion,
+PER.celular,
+PER.fecha_nacimiento,
+PER.fecha_entrada,
+PER.fecha_termino
+FROM PERSONA PER
+WHERE PER.nombre LIKE '%A%' ORDER BY PER.nombre;
+;
+
+SELECT PER.persona_id,
+PER.nombre,
+PER.apellido_paterno,
+PER.apellido_materno,
+PER.correo_electronico,
+PER.direccion,
+PER.celular,
+PER.fecha_nacimiento,
+PER.fecha_entrada,
+PER.fecha_termino
+FROM PERSONA PER WHERE 1=1 
+ ORDER BY 
+PER.nombre
