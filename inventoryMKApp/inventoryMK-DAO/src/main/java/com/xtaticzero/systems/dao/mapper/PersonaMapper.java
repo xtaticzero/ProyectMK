@@ -6,7 +6,6 @@
 package com.xtaticzero.systems.dao.mapper;
 
 import com.xtaticzero.systems.base.dto.PersonaDTO;
-import com.xtaticzero.systems.dao.util.RowsNames;
 import java.math.BigInteger;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -16,7 +15,7 @@ import org.springframework.jdbc.core.RowMapper;
  *
  * @author Ing. Emmanuel Estrada Gonzalez <emmanuel.estradag.ipn@gmail.com>
  */
-public class PersonaMapper implements RowMapper<PersonaDTO>, RowsNames {
+public class PersonaMapper extends BaseAbstractMapper implements RowMapper<PersonaDTO>  {
 
     @Override
     public PersonaDTO mapRow(ResultSet rs, int i) throws SQLException { 

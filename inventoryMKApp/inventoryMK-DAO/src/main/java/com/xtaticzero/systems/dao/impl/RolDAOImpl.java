@@ -37,7 +37,7 @@ public class RolDAOImpl extends BaseJDBCDao<RolDTO> implements RolDAO, RolSQL {
         KeyHolder keyHolder = new GeneratedKeyHolder();
 
         try {
-            
+
             List<RolDTO> resultLst = findByDescripcion(newRol.getDescripcion());
 
             if (resultLst != null && !resultLst.isEmpty()) {
@@ -48,7 +48,7 @@ public class RolDAOImpl extends BaseJDBCDao<RolDTO> implements RolDAO, RolSQL {
                     }
                 }
             }
-            
+
             PreparedStatementCreator statement
                     = new RolPreparedStatement(newRol);
             getJdbcTemplateBase().update(statement, keyHolder);
@@ -87,10 +87,27 @@ public class RolDAOImpl extends BaseJDBCDao<RolDTO> implements RolDAO, RolSQL {
 
             List<Object> params = new ArrayList<>();
 
-            params.add(rol.getDescripcion());
             params.add(rol.getRolId());
 
             return getJdbcTemplateBase().update(ROL_INACTIVATE, params.toArray());
+        } catch (Exception ex) {
+            logger.error(ex.getMessage(), ex);
+            throw new DAOException(ERR_GENERAL, ex.getMessage(), ex);
+        }
+    }
+
+    @Override
+    public Integer activate(RolDTO rol) throws DAOException {
+        if (rol == null || rol.getRolId() == null) {
+            throw new DAOException(ERR_GENERAL);
+        }
+        try {
+
+            List<Object> params = new ArrayList<>();
+
+            params.add(rol.getRolId());
+
+            return getJdbcTemplateBase().update(ROL_ACTIVATE, params.toArray());
         } catch (Exception ex) {
             logger.error(ex.getMessage(), ex);
             throw new DAOException(ERR_GENERAL, ex.getMessage(), ex);
@@ -113,8 +130,8 @@ public class RolDAOImpl extends BaseJDBCDao<RolDTO> implements RolDAO, RolSQL {
             List<Object> params = new ArrayList<>();
 
             params.add(descripcion);
-                        
-            return getJdbcTemplateBase().query(ROL_FIND_DESCRIPCION.replace(EXPRESION, descripcion),new RolMapper());
+
+            return getJdbcTemplateBase().query(ROL_FIND_DESCRIPCION.replace(EXPRESION, descripcion), new RolMapper());
         } catch (Exception ex) {
             logger.error(ex.getMessage(), ex);
             throw new DAOException(ERR_GENERAL, ex.getMessage(), ex);

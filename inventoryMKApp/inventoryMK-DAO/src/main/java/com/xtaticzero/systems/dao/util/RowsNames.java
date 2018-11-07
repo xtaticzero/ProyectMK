@@ -34,6 +34,12 @@ public interface RowsNames {
     String ROL_FECHA_ENTRADA = "ROL.fecha_entrada";
     String ROL_FECHA_FIN = "ROL.fecha_termino";
 
+    String COMISION_ID = "COM.comision_id";
+    String COMISION_PORCENTAJE = "COM.porcentaje";
+    String COMISION_DESCRIPCION = "COM.descripcion";
+    String COMISION_FECHA_ENTRADA = "COM.fecha_entrada";
+    String COMISION_FECHA_FIN = "COM.fecha_termino";
+
     String TOTAL = "total";
 
 }

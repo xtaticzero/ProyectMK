@@ -45,7 +45,7 @@ public class UserLoginView extends VistaAbstractMB {
     public void login(ActionEvent event) {
         boolean loggedIn = false;
 
-        if (getUsuario().getDisplay_name() != null && getUsuario().getPassword() != null) {
+        if (getUsuario().getDisplayName()!= null && getUsuario().getPassword() != null) {
 
             try {
                 UsuarioDTO correctUser = logginService.logginUser(getUsuario());

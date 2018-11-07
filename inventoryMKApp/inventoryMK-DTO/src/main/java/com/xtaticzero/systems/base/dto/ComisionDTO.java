@@ -17,16 +17,16 @@ public class ComisionDTO extends BaseModel {
 
     private static final long serialVersionUID = 3999673394786806400L;
 
-    private BigInteger comision_id;
+    private BigInteger comisionId;
     private BigDecimal porcentaje;
     private String descripcion;
 
-    public BigInteger getComision_id() {
-        return comision_id;
+    public BigInteger getComisionId() {
+        return comisionId;
     }
 
-    public void setComision_id(BigInteger comision_id) {
-        this.comision_id = comision_id;
+    public void setComisionId(BigInteger comisionId) {
+        this.comisionId = comisionId;
     }
 
     public BigDecimal getPorcentaje() {

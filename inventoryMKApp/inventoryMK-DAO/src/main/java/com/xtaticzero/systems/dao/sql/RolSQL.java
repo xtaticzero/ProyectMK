@@ -20,7 +20,8 @@ public interface RolSQL extends BaseSQL {
 
     String ROL_UPDATE = " UPDATE CAT_ROL ROL SET ROL.descripcion = ?".concat(FECHA_TERMINO).concat(WHERE).concat(AND).concat(ROL_ID);
 
-    String ROL_INACTIVATE = " UPDATE CAT_ROL ROL SET ROL.fecha_termino = null ".concat(WHERE).concat(AND).concat(ROL_ID);
+    String ROL_INACTIVATE = " UPDATE CAT_ROL ROL SET ROL.fecha_termino = SYSDATE() ".concat(WHERE).concat(AND).concat(ROL_ID);
+    String ROL_ACTIVATE = " UPDATE CAT_ROL ROL SET ROL.fecha_termino = null ".concat(WHERE).concat(AND).concat(ROL_ID);
     ;
 
     String ROL_HEDER = " SELECT \n"

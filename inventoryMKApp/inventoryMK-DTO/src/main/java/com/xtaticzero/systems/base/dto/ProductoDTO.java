@@ -26,8 +26,6 @@ public class ProductoDTO extends BaseModel {
     private BigDecimal costoCatalogo;
     private BigDecimal costoReal;
     private BigDecimal numeroUnidades;
-    private Date fechaEntrada;
-    private Date fechaTermino;
 
     public BigInteger getIdProducto() {
         return idProducto;
@@ -91,22 +89,6 @@ public class ProductoDTO extends BaseModel {
 
     public void setNumeroUnidades(BigDecimal numeroUnidades) {
         this.numeroUnidades = numeroUnidades;
-    }
-
-    public Date getFechaEntrada() {
-        return fechaEntrada != null ? (Date) fechaEntrada.clone() : null;
-    }
-
-    public void setFechaEntrada(Date fechaEntrada) {
-        this.fechaEntrada = fechaEntrada != null ? (Date) fechaEntrada.clone() : null;
-    }
-
-    public Date getFechaTermino() {
-        return fechaTermino != null ? (Date) fechaTermino.clone() : null;
-    }
-
-    public void setFechaTermino(Date fechaTermino) {
-        this.fechaTermino = fechaTermino != null ? (Date) fechaTermino.clone() : null;
     }
 
 }

@@ -25,8 +25,6 @@ public class PersonaDTO extends BaseModel {
     private String direccion;
     private String celular;
     private Date fechaNacimiento;
-    private Date fechaEntrada;
-    private Date fechaTermino;
 
     public BigInteger getPersonaId() {
         return personaId;
@@ -92,26 +90,11 @@ public class PersonaDTO extends BaseModel {
         this.fechaNacimiento = fechaNacimiento != null ? (Date) fechaNacimiento.clone() : null;
     }
 
-    public Date getFechaEntrada() {
-        return fechaEntrada != null ? (Date) fechaEntrada.clone() : null;
-    }
-
-    public void setFechaEntrada(Date fechaEntrada) {
-        this.fechaEntrada = fechaEntrada != null ? (Date) fechaEntrada.clone() : null;
-    }
-
-    public Date getFechaTermino() {
-        return fechaTermino != null ? (Date) fechaTermino.clone() : null;
-    }
-
-    public void setFechaTermino(Date fechaTermino) {
-        this.fechaTermino = fechaTermino != null ? (Date) fechaTermino.clone() : null;
-    }
+    
 
     @Override
     public String toString() {
-        return "PersonaDTO{" + "personaId=" + personaId + ", nombre=" + nombre + ", apellidoPaterno=" + apellidoPaterno + ", apellidoMaterno=" + apellidoMaterno + ", correoElectronico=" + correoElectronico + ", direccion=" + direccion + ", celular=" + celular + ", fechaNacimiento=" + fechaNacimiento + ", fechaEntrada=" + fechaEntrada + ", fechaTermino=" + fechaTermino + '}';
+        return "PersonaDTO{" + "personaId=" + personaId + ", nombre=" + nombre + ", apellidoPaterno=" + apellidoPaterno + ", apellidoMaterno=" + apellidoMaterno + ", correoElectronico=" + correoElectronico + ", direccion=" + direccion + ", celular=" + celular + ", fechaNacimiento=" + fechaNacimiento + ", fechaEntrada=" + getFechaEntrada() + ", fechaTermino=" + getFechaTermino() + '}';
     }
 
-    
 }

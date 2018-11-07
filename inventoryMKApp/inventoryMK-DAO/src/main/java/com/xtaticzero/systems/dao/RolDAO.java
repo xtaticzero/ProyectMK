@@ -20,12 +20,14 @@ public interface RolDAO extends RolSQL {
 
     Integer update(RolDTO rol) throws DAOException;
 
-    Integer delete(RolDTO newRol) throws DAOException;
+    Integer delete(RolDTO rol) throws DAOException;
+
+    Integer activate(RolDTO rol) throws DAOException;
 
     List<RolDTO> findAll() throws DAOException;
-    
+
     List<RolDTO> findByDescripcion(String descripcion) throws DAOException;
-    
+
     RolDTO findById(RolDTO rol) throws DAOException;
 
 }

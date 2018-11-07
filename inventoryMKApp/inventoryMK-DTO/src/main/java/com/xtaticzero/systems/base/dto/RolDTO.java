@@ -7,7 +7,6 @@ package com.xtaticzero.systems.base.dto;
 
 import com.xtaticzero.systems.base.BaseModel;
 import java.math.BigInteger;
-import java.util.Date;
 
 /**
  *
@@ -19,8 +18,6 @@ public class RolDTO extends BaseModel {
 
     private BigInteger rolId;
     private String descripcion;
-    private Date fechaEntrada;
-    private Date fechaTermino;
 
     public BigInteger getRolId() {
         return rolId;
@@ -36,22 +33,6 @@ public class RolDTO extends BaseModel {
 
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
-    }
-
-    public Date getFechaEntrada() {
-        return fechaEntrada != null ? (Date) fechaEntrada.clone() : null;
-    }
-
-    public void setFechaEntrada(Date fechaEntrada) {
-        this.fechaEntrada = fechaEntrada != null ? (Date) fechaEntrada.clone() : null;
-    }
-
-    public Date getFechaTermino() {
-        return fechaTermino != null ? (Date) fechaTermino.clone() : null;
-    }
-
-    public void setFechaTermino(Date fechaTermino) {
-        this.fechaTermino = fechaTermino != null ? (Date) fechaTermino.clone() : null;
     }
 
 }

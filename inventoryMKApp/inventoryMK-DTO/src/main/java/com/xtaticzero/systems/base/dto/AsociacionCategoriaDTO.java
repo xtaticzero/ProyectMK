@@ -7,7 +7,6 @@ package com.xtaticzero.systems.base.dto;
 
 import com.xtaticzero.systems.base.BaseModel;
 import java.math.BigInteger;
-import java.util.Date;
 
 /**
  *
@@ -20,8 +19,6 @@ public class AsociacionCategoriaDTO extends BaseModel {
     private BigInteger idAsociacionCategoria;
     private CategoriaDTO categoria;
     private CategoriaDTO categoriaParent;
-    private Date fechaEntrada;
-    private Date fechaTermino;
 
     public BigInteger getIdAsociacionCategoria() {
         return idAsociacionCategoria;
@@ -47,19 +44,4 @@ public class AsociacionCategoriaDTO extends BaseModel {
         this.categoriaParent = categoriaParent;
     }
 
-    public Date getFechaEntrada() {
-        return fechaEntrada != null ? (Date) fechaEntrada.clone() : null;
-    }
-
-    public void setFechaEntrada(Date fechaEntrada) {
-        this.fechaEntrada = fechaEntrada != null ? (Date) fechaEntrada.clone() : null;
-    }
-
-    public Date getFechaTermino() {
-        return fechaTermino != null ? (Date) fechaTermino.clone() : null;
-    }
-
-    public void setFechaTermino(Date fechaTermino) {
-        this.fechaTermino = fechaTermino != null ? (Date) fechaTermino.clone() : null;
-    }
 }

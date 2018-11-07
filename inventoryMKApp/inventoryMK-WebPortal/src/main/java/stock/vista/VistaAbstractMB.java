@@ -24,7 +24,6 @@ import org.apache.log4j.Logger;
 import stock.vista.constans.CatalogoErroresEnum;
 import stock.vista.vector.enums.MIMETypesEnum;
 
-
 /**
  *
  * @author Ing. Emmanuel Estrada Gonzalez <emmanuel.estradag.ipn@gmail.com>
@@ -35,13 +34,13 @@ public abstract class VistaAbstractMB implements Serializable {
 
     protected final Logger logger;
     private UsuarioDTO usuario;
-    
+
     public VistaAbstractMB() {
         logger = Logger.getLogger(getClass());
     }
 
     public void preRender() throws FrontException {
-        if (usuario.getRol_id() == null) {
+        if (usuario.getRol() == null && usuario.getRol().getRolId() != null) {
             BusinessException bEx = new BusinessException("usr.invalido", "usuario desconocido");
             FrontException fEx = new FrontException(ExceptionConstant.ERR_GENERAL, bEx, CatalogoErroresEnum.ERROR_USUARIO_INVALIDO.getTipo(), CatalogoErroresEnum.ERROR_USUARIO_INVALIDO.getCodigo());
             setAttributeSession(ConstantesVista.MSG_ERROR_SESSION, fEx);
@@ -66,7 +65,7 @@ public abstract class VistaAbstractMB implements Serializable {
 
     protected void validateUsuarioValido() throws FrontException {
         usuario = getUserProfile();
-        if (usuario != null && usuario.getUser_id() != null) {
+        if (usuario != null && usuario.getUserId() != null) {
             return;
         } else {
             BusinessException bEx = new BusinessException("usr.invalido", "usuario desconocido");
@@ -82,7 +81,7 @@ public abstract class VistaAbstractMB implements Serializable {
      */
     public String getNameSession() {
         if (getUserProfile() != null) {
-            return getUserProfile().getDisplay_name();
+            return getUserProfile().getDisplayName();
         }
         return null;
     }
@@ -212,8 +211,6 @@ public abstract class VistaAbstractMB implements Serializable {
         }
         return text;
     }
-
-    
 
     public UsuarioDTO getUsuario() {
         return usuario;
