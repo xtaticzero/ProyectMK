@@ -39,7 +39,7 @@ public class ReporteTest extends BaseTest {
     public void init() {
         usr = new UsuarioDTO();
 
-        usr.setDisplay_name("admin");
+        usr.setDisplayName("admin");
         usr.setPassword("admin123");
 
         if (pruebaDao != null) {

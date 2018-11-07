@@ -28,7 +28,7 @@ public class UserDAOImpl extends BaseJDBCDao<UsuarioDTO> implements UserDao, Usu
 
     @Override
     public int insert(UsuarioDTO usuario) throws DAOException {
-        if (usuario == null) {
+        if (usuario == null || usuario.getPersona() == null || usuario.getPersona().getPersonaId() == null) {
             return 0;
         }
 
@@ -36,8 +36,9 @@ public class UserDAOImpl extends BaseJDBCDao<UsuarioDTO> implements UserDao, Usu
 
             List<Object> params = new ArrayList<>();
 
-            params.add(usuario.getEmail());
-            params.add(usuario.getDisplay_name());
+            params.add(usuario.getPersona().getPersonaId());
+            params.add(usuario.getRol().getRolId());
+            params.add(usuario.getDisplayName());
             params.add(usuario.getPassword());
 
             return getJdbcTemplateBase().update(UsuarioSQL.SQL_INSERT_USER, params.toArray());
@@ -50,16 +51,15 @@ public class UserDAOImpl extends BaseJDBCDao<UsuarioDTO> implements UserDao, Usu
 
     @Override
     public int update(UsuarioDTO usuario) throws DAOException {
-        if (usuario != null && (usuario.getUser_id() == null || usuario.getEmail() == null)) {
-            return 0;
-        } else {
+        if (usuario != null && usuario.getPersona() != null && usuario.getPersona().getPersonaId() != null) {
+
             try {
                 List<Object> params = new ArrayList<>();
 
-                params.add(usuario.getEmail());
-                params.add(usuario.getDisplay_name());
-                params.add(usuario.getPassword());
-                params.add(usuario.getUser_id());
+                params.add(usuario.getPersona().getPersonaId());
+                params.add(usuario.getRol().getRolId());
+                params.add(usuario.getDisplayName());
+                params.add(usuario.getUserId());
 
                 return getJdbcTemplateBase().update(UsuarioSQL.SQL_UPDATE_USER, params.toArray());
 
@@ -67,13 +67,16 @@ public class UserDAOImpl extends BaseJDBCDao<UsuarioDTO> implements UserDao, Usu
                 logger.error(ex.getMessage(), ex);
                 throw new DAOException(ERR_GENERAL, ex.getMessage(), ex);
             }
+
+        } else {
+            return 0;
         }
 
     }
 
     @Override
     public int delete(UsuarioDTO usuario) throws DAOException {
-        if (usuario == null && usuario.getUser_id() != null) {
+        if (usuario == null || usuario.getUserId() != null) {
             return 0;
         }
 
@@ -81,7 +84,7 @@ public class UserDAOImpl extends BaseJDBCDao<UsuarioDTO> implements UserDao, Usu
 
             List<Object> params = new ArrayList<>();
 
-            params.add(usuario.getUser_id());
+            params.add(usuario.getUserId());
 
             return getJdbcTemplateBase().update(UsuarioSQL.SQL_DELETE_USER, params.toArray());
 
@@ -89,6 +92,39 @@ public class UserDAOImpl extends BaseJDBCDao<UsuarioDTO> implements UserDao, Usu
             logger.error(ex.getMessage(), ex);
             throw new DAOException(ERR_GENERAL, ex.getMessage(), ex);
         }
+    }
+    
+    @Override
+    public int activate(UsuarioDTO usuario) throws DAOException {
+        if (usuario == null || usuario.getUserId() != null) {
+            return 0;
+        }
+
+        try {
+
+            List<Object> params = new ArrayList<>();
+
+            params.add(usuario.getUserId());
+
+            return getJdbcTemplateBase().update(UsuarioSQL.SQL_ACTIVATE_USER, params.toArray());
+
+        } catch (Exception ex) {
+            logger.error(ex.getMessage(), ex);
+            throw new DAOException(ERR_GENERAL, ex.getMessage(), ex);
+        }
+    }
+
+    @Override
+    public List<UsuarioDTO> findAll() throws DAOException {
+        try {
+
+            return getJdbcTemplateBase().query(UsuarioSQL.SQL_FIND_BY_ALL, new UsuarioMapper());
+
+        } catch (Exception ex) {
+            logger.error(ex.getMessage(), ex);
+            throw new DAOException(ERR_GENERAL, ex.getMessage(), ex);
+        }
+
     }
 
     @Override
@@ -142,9 +178,9 @@ public class UserDAOImpl extends BaseJDBCDao<UsuarioDTO> implements UserDao, Usu
             List<Object> params = new ArrayList<>();
 
             params.add(usuario.getPassword());
-            params.add(usuario.getDisplay_name());
+            params.add(usuario.getDisplayName());
 
-            return getJdbcTemplateBase().queryForObject(UsuarioSQL.SQL_LOGGIN, params.toArray(), new UsuarioMapper());
+            return getJdbcTemplateBase().queryForObject(SQL_LOGGIN.concat(USER_ACTIVE), params.toArray(), new UsuarioMapper());
 
         } catch (EmptyResultDataAccessException emty) {
             return null;

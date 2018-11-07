@@ -17,7 +17,7 @@ public class PersonaDTO extends BaseModel {
 
     private static final long serialVersionUID = -7255151704447397313L;
 
-    private BigInteger persona_id;
+    private BigInteger personaId;
     private String nombre;
     private String apellidoPaterno;
     private String apellidoMaterno;
@@ -28,12 +28,12 @@ public class PersonaDTO extends BaseModel {
     private Date fechaEntrada;
     private Date fechaTermino;
 
-    public BigInteger getPersona_id() {
-        return persona_id;
+    public BigInteger getPersonaId() {
+        return personaId;
     }
 
-    public void setPersona_id(BigInteger persona_id) {
-        this.persona_id = persona_id;
+    public void setPersonaId(BigInteger personaId) {
+        this.personaId = personaId;
     }
 
     public String getNombre() {
@@ -108,4 +108,10 @@ public class PersonaDTO extends BaseModel {
         this.fechaTermino = fechaTermino != null ? (Date) fechaTermino.clone() : null;
     }
 
+    @Override
+    public String toString() {
+        return "PersonaDTO{" + "personaId=" + personaId + ", nombre=" + nombre + ", apellidoPaterno=" + apellidoPaterno + ", apellidoMaterno=" + apellidoMaterno + ", correoElectronico=" + correoElectronico + ", direccion=" + direccion + ", celular=" + celular + ", fechaNacimiento=" + fechaNacimiento + ", fechaEntrada=" + fechaEntrada + ", fechaTermino=" + fechaTermino + '}';
+    }
+
+    
 }

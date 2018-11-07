@@ -33,11 +33,11 @@ public class UserLogginServiceImpl extends BaseBusinessServices implements UserL
         try {
             UsuarioDTO usr = userDao.passwordValido(usuario);
             if(usr==null){
-                throw new BusinessException(ERR_LOGGIN,usuario.getDisplay_name());
+                throw new BusinessException(ERR_LOGGIN,usuario.getDisplayName());
             }
             return usr;
         } catch (DAOException dex) {
-            throw new BusinessException(ERR_LOGGIN,dex.getCause(),dex,usuario.getDisplay_name());            
+            throw new BusinessException(ERR_LOGGIN,dex.getCause(),dex,usuario.getDisplayName());            
         }
     }
 

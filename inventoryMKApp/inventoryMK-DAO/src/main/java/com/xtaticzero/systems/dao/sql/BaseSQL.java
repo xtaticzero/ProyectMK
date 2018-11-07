@@ -18,4 +18,5 @@ public interface BaseSQL {
     String AND = " AND \n";
 
     String WHERE = " WHERE 1=1 \n";
+    String ORDEY_BY = " ORDER BY \n";
 }

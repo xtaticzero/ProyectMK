@@ -22,6 +22,10 @@ public interface UserDao {
 
     int delete(UsuarioDTO usuario) throws DAOException;
 
+    int activate(UsuarioDTO usuario) throws DAOException;
+
+    List<UsuarioDTO> findAll() throws DAOException;
+
     UsuarioDTO findName(String name) throws DAOException;
 
     List<UsuarioDTO> findRol(BigInteger idRol) throws DAOException;

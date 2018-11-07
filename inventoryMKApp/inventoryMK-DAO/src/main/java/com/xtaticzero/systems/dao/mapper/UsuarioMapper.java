@@ -21,13 +21,13 @@ public class UsuarioMapper implements RowMapper<UsuarioDTO>,RowsNames {
     @Override
     public UsuarioDTO mapRow(ResultSet rs, int i) throws SQLException {
         UsuarioDTO usuario = new UsuarioDTO();
-        usuario.setDisplay_name(rs.getString(USER_DISPLAY_NAME));
-        usuario.setUser_id(new BigInteger(rs.getString(USER_ID)));
-        usuario.setRol_id(new BigInteger(rs.getString(USR_ROL_ID)));
-        usuario.setEmail(rs.getString(USER_EMAIL));
-        usuario.setFecha(rs.getTimestamp(USER_FECHA_ENTRADA));
-        usuario.setFecha(rs.getTimestamp(USER_FECHA_TERMINO));
         
+        usuario.setUserId(new BigInteger(rs.getString(USER_ID)));
+        usuario.setDisplayName(rs.getString(USER_DISPLAY_NAME));
+        usuario.setFechaEntrada(rs.getTimestamp(USER_FECHA_ENTRADA));
+        usuario.setFechaTermino(rs.getTimestamp(USER_FECHA_TERMINO));
+        
+        usuario.setPersona(new PersonaMapper().mapRow(rs, i));
         usuario.setRol(new RolMapper().mapRow(rs, i));
 
         return usuario;

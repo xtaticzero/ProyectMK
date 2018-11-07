@@ -17,37 +17,36 @@ public class UsuarioDTO extends BaseModel {
 
     private static final long serialVersionUID = 9060326732700909763L;
 
-    private BigInteger user_id;
-    private BigInteger rol_id;
+    private BigInteger userId;
     private RolDTO rol;
-    private String email;
-    private String display_name;
+    private PersonaDTO persona;
+    private String displayName;
     private String password;
-    private Date fecha;
+    private Date fechaEntrada;
     private Date fechaTermino;
 
-    public BigInteger getUser_id() {
-        return user_id;
+    public BigInteger getUserId() {
+        return userId;
     }
 
-    public void setUser_id(BigInteger user_id) {
-        this.user_id = user_id;
+    public void setUserId(BigInteger userId) {
+        this.userId = userId;
     }
 
-    public String getEmail() {
-        return email;
+    public PersonaDTO getPersona() {
+        return persona;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setPersona(PersonaDTO persona) {
+        this.persona = persona;
     }
 
-    public String getDisplay_name() {
-        return display_name;
+    public String getDisplayName() {
+        return displayName;
     }
 
-    public void setDisplay_name(String display_name) {
-        this.display_name = display_name;
+    public void setDisplayName(String displayName) {
+        this.displayName = displayName;
     }
 
     public String getPassword() {
@@ -58,10 +57,6 @@ public class UsuarioDTO extends BaseModel {
         this.password = password;
     }
 
-    public void setRol_id(BigInteger rol_id) {
-        this.rol_id = rol_id;
-    }
-
     public RolDTO getRol() {
         return rol;
     }
@@ -70,29 +65,25 @@ public class UsuarioDTO extends BaseModel {
         this.rol = rol;
     }
 
-    public BigInteger getRol_id() {
-        return rol_id;
+    public Date getFechaEntrada() {
+        return fechaEntrada != null ? (Date) fechaEntrada.clone() : null;
     }
 
-    public void setFecha(Date fecha) {
-        this.fecha = (fecha != null) ? (Date) fecha.clone() : null;
-    }
-
-    public Date getFecha() {
-        return (fecha != null) ? (Date) fecha.clone() : null;
+    public void setFechaEntrada(Date fechaEntrada) {
+        this.fechaEntrada = fechaEntrada != null ? (Date) fechaEntrada.clone() : null;
     }
 
     public Date getFechaTermino() {
-        return  (fechaTermino != null) ? (Date) fechaTermino.clone() : null;
+        return fechaTermino != null ? (Date) fechaTermino.clone() : null;
     }
 
     public void setFechaTermino(Date fechaTermino) {
-        this.fechaTermino = (fechaTermino != null) ? (Date) fechaTermino.clone() : null;
+        this.fechaTermino = fechaTermino != null ? (Date) fechaTermino.clone() : null;
     }
 
     @Override
     public String toString() {
-        return "UsuarioDTO{" + "user_id=" + user_id + ", rol_id=" + rol_id + ", rol=" + rol + ", email=" + email + ", display_name=" + display_name + ", password=" + password + ", fecha=" + fecha + ", fechaTermino=" + fechaTermino + '}';
+        return "UsuarioDTO{" + "userId=" + userId + ", rol=" + rol + ", persona=" + persona + ", displayName=" + displayName + ", password=" + password + ", fechaEntrada=" + fechaEntrada + ", fechaTermino=" + fechaTermino + '}';
     }
     
     
