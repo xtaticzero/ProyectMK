@@ -6,14 +6,17 @@
 package com.xtaticzero.systems.test.dao;
 
 import com.xtaticzero.systems.base.constants.excepcion.impl.DAOException;
+import com.xtaticzero.systems.base.dto.ComisionDTO;
 import com.xtaticzero.systems.base.dto.PersonaDTO;
 import com.xtaticzero.systems.base.dto.RolDTO;
 import com.xtaticzero.systems.base.dto.UsuarioDTO;
+import com.xtaticzero.systems.dao.ComisionDAO;
 import com.xtaticzero.systems.dao.PersonaDAO;
 import com.xtaticzero.systems.dao.PruebaDao;
 import com.xtaticzero.systems.dao.RolDAO;
 import com.xtaticzero.systems.dao.UserDao;
 import com.xtaticzero.systems.test.base.BaseTest;
+import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Date;
 import java.util.List;
@@ -44,6 +47,10 @@ public class DaoTest extends BaseTest {
     @Autowired
     @Qualifier("personaDAO")
     private PersonaDAO personaDAO;
+    
+    @Autowired
+    @Qualifier("comisionDAO")
+    private ComisionDAO comisionDAO;
 
     @Test
     @Ignore
@@ -160,6 +167,41 @@ public class DaoTest extends BaseTest {
             }
             
             if (personaDTO.getPersonaId() != null) {
+                throw new Exception("Prueba insert");
+            }
+        } catch (DAOException ex) {
+            System.err.println(ex);
+        }
+    }
+    
+    @Test
+    @Transactional(readOnly = false, rollbackFor = Exception.class)
+    public void comisionTest() throws Exception {
+        try {
+            ComisionDTO comisionDTO = new ComisionDTO();
+
+            comisionDTO.setDescripcion("MK_COMISION");
+            comisionDTO.setPorcentaje(new BigDecimal("32.3"));
+            
+
+            comisionDTO = comisionDAO.insert(comisionDTO);
+            
+            System.out.println("com.xtaticzero.systems.test.dao.DaoTest.comisionTest() insert : "+ comisionDTO);
+            
+            comisionDTO.setDescripcion("MK_NUEVO_MONBRE");            
+            
+            System.out.println("com.xtaticzero.systems.test.dao.DaoTest.comisionTest() update : {"+ comisionDAO.update(comisionDTO)+"} "+ comisionDTO);
+            System.out.println("com.xtaticzero.systems.test.dao.DaoTest.comisionTest() delete : {"+ comisionDAO.delete(comisionDTO)+"} ");
+            List<ComisionDTO> lst = comisionDAO.findAll();
+            for (ComisionDTO com : lst) {
+                System.out.println("com.xtaticzero.systems.test.dao.DaoTest.comisionTest() findAll() :"+com);
+            }
+            lst = comisionDAO.findByDescripcion("M");
+            for (ComisionDTO com1 : lst) {
+                System.out.println("com.xtaticzero.systems.test.dao.DaoTest.personaTest() findByName() :"+com1);
+            }
+                        
+            if (comisionDTO.getComisionId() != null) {
                 throw new Exception("Prueba insert");
             }
         } catch (DAOException ex) {

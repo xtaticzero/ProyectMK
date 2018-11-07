@@ -137,3 +137,8 @@ VALUES('MK',34.5);
 UPDATE CAT_COMISIONES 
 SET COM.fecha_termino = SYSDATE()
 WHERE COM.comision_id = ?;
+
+UPDATE CAT_COMISIONES COM 
+SET COM.descripcion = 'MK',
+COM.porcentaje = 3.3
+WHERE COM.comision_id = 1;

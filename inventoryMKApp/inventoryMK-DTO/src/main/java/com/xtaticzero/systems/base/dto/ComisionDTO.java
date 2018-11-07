@@ -45,4 +45,11 @@ public class ComisionDTO extends BaseModel {
         this.descripcion = descripcion;
     }
 
+    @Override
+    public String toString() {
+        return "ComisionDTO{" + "comisionId=" + comisionId + ", porcentaje=" + porcentaje + ", descripcion=" + descripcion + ", fechaEntrada=" + getFechaEntrada() + ", fechaTermino=" + getFechaTermino() + '}';
+    }
+    
+    
+
 }

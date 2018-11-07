@@ -43,4 +43,6 @@ public class BaseModel implements Serializable {
     public void setFechaTermino(Date fechaTermino) {
         this.fechaTermino = fechaTermino != null ? (Date) fechaTermino.clone() : null;
     }
+    
+    
 }
